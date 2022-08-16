@@ -1,0 +1,522 @@
+openapi: 3.0.1
+info:
+  description: This is Swagger UI environment generated for the Recipe Managementt
+    specification
+  title: Recipe Management
+  version: "4.0"
+servers:
+- url: https://127.0.0.1:9090/abn-api/recipeManagement/v4/
+tags:
+- name: recipe
+paths:
+  /recipe:
+    get:
+      description: This operation list or find Recipe entities
+      operationId: listRecipe
+      parameters:
+      - description: Comma-separated properties to be provided in response
+        in: query
+        name: fields
+        schema:
+          type: string
+      - description: Requested index for start of resources to be provided in response
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Requested number of resources to be provided in response
+        in: query
+        name: limit
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Recipe'
+                type: array
+          description: Success
+          headers:
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+        "400":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "405":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Method Not allowed
+        "409":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Conflict
+        "500":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: List or find Recipe objects
+      tags:
+      - recipe
+      x-accepts: application/json;charset=utf-8
+      x-tags:
+      - tag: recipe
+    post:
+      description: This operation creates a Recipe entity.
+      operationId: createRecipe
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Recipe_Create'
+        description: The Recipe to be created
+        required: true
+      responses:
+        "201":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+          description: Created
+        "400":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "405":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Method Not allowed
+        "409":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Conflict
+        "500":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Creates a Recipe
+      tags:
+      - recipe
+      x-codegen-request-body-name: recipe
+      x-content-type: application/json;charset=utf-8
+      x-accepts: application/json;charset=utf-8
+      x-tags:
+      - tag: recipe
+  /recipe/{id}:
+    delete:
+      description: This operation deletes a Recipe entity.
+      operationId: deleteRecipe
+      parameters:
+      - description: Identifier of the Recipe
+        in: path
+        name: id
+        required: true
+        schema: {}
+      responses:
+        "204":
+          content: {}
+          description: Deleted
+        "400":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "405":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Method Not allowed
+        "409":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Conflict
+        "500":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Deletes a Recipe
+      tags:
+      - recipe
+      x-accepts: application/json;charset=utf-8
+      x-tags:
+      - tag: recipe
+    get:
+      description: This operation retrieves a Recipe entity. Attribute selection is
+        enabled for all first level attributes.
+      operationId: retrieveRecipe
+      parameters:
+      - description: Identifier of the Recipe
+        in: path
+        name: id
+        required: true
+        schema: {}
+      - description: Comma-separated properties to provide in response
+        in: query
+        name: fields
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+          description: Success
+        "400":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "405":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Method Not allowed
+        "409":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Conflict
+        "500":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Retrieves a Recipe by ID
+      tags:
+      - recipe
+      x-accepts: application/json;charset=utf-8
+      x-tags:
+      - tag: recipe
+    patch:
+      description: This operation updates partially a Recipe entity.
+      operationId: patchRecipe
+      parameters:
+      - description: Identifier of the Recipe
+        in: path
+        name: id
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Recipe_Update'
+        description: The Recipe to be updated
+        required: true
+      responses:
+        "200":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+          description: Updated
+        "400":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "403":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        "404":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "405":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Method Not allowed
+        "409":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Conflict
+        "500":
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Updates partially a Recipe
+      tags:
+      - recipe
+      x-codegen-request-body-name: recipe
+      x-content-type: application/json;charset=utf-8
+      x-accepts: application/json;charset=utf-8
+      x-tags:
+      - tag: recipe
+components:
+  schemas:
+    Recipe:
+      description: Recipe Object
+      example:
+        instructions: instructions
+        ingredientsType:
+        - quantity: 5
+          name: name
+          id: 1
+        - quantity: 5
+          name: name
+          id: 1
+        servings: 6
+        ingredient: ingredient
+        name: name
+        vegetarian: true
+        id: 0
+      properties:
+        name:
+          description: Name of the Recipe
+          type: string
+        id:
+          description: ID of the Recipe
+          format: int64
+          type: integer
+        vegetarian:
+          description: Recipe veg or non-veg
+          type: string
+        servings:
+          description: Recipe Servers for No of People
+          format: int32
+          type: integer
+        instructions:
+          description: Instructions for Preparing Recipe
+          type: string
+        ingredient:
+          description: Main ingredient for Preparing Recipe
+          type: string
+        ingredientsType:
+          items:
+            $ref: '#/components/schemas/IngredientsType'
+          type: array
+      required:
+      - id
+      - instructions
+      - name
+      - servings
+      - vegetarian
+      type: object
+    IngredientsType:
+      description: Ingredients Object
+      example:
+        quantity: 5
+        name: name
+        id: 1
+      properties:
+        id:
+          description: ID of the Ingredient
+          format: int64
+          type: integer
+        name:
+          description: Name of the Ingredient
+          type: string
+        quantity:
+          description: Quantity in TableSpoon
+          format: int32
+          type: integer
+      type: object
+    Recipe_Create:
+      description: Recipe Object
+      properties:
+        ingredient:
+          description: Main ingredient for Preparing Recipe
+          type: string
+        name:
+          description: Name of the Recipe
+          type: string
+        id:
+          description: ID of the Recipe
+          format: int64
+          type: integer
+        vegetarian:
+          description: Recipe veg or non-veg
+          type: string
+        servings:
+          description: Recipe Servers for No of People
+          format: int32
+          type: integer
+        instructions:
+          description: Instructions for Preparing Recipe
+          type: string
+        ingredients:
+          items:
+            $ref: '#/components/schemas/IngredientsType'
+          type: array
+      required:
+      - ingredients
+      - instructions
+      - name
+      - servings
+      - vegetarian
+      type: object
+    Recipe_Update:
+      description: Recipe Object
+      properties:
+        ingredient:
+          description: Main ingredient for Preparing Recipe
+          type: string
+        name:
+          description: Name of the Recipe
+          type: string
+        id:
+          description: ID of the Recipe
+          format: int64
+          type: integer
+        vegetarian:
+          description: Recipe veg or non-veg
+          type: string
+        servings:
+          description: Recipe Servers for No of People
+          format: int32
+          type: integer
+        instructions:
+          description: Instructions for Preparing Recipe
+          type: string
+        ingredients:
+          items:
+            $ref: '#/components/schemas/IngredientsType'
+          type: array
+      type: object
+    Error:
+      description: "Used when an API throws an Error, typically with a HTTP error\
+        \ response-code (3xx, 4xx, 5xx)"
+      properties:
+        code:
+          description: "Application relevant detail, defined in the API or a common\
+            \ list."
+          type: string
+        reason:
+          description: Explanation of the reason for the error which can be shown
+            to a client user.
+          type: string
+        message:
+          description: More details and corrective actions related to the error which
+            can be shown to a client user.
+          type: string
+        status:
+          description: HTTP Error code extension
+          type: string
+        referenceError:
+          description: URI of documentation describing the error.
+          format: uri
+          type: string
+      required:
+      - code
+      - reason
+      type: object
+x-original-swagger-version: "2.0"
